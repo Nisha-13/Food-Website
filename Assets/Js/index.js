@@ -36,6 +36,7 @@ function topFunction() {
 
 
 
+
 $(document).ready(function () {
 
     // Loop through each product card
@@ -76,3 +77,7 @@ $(document).ready(function () {
                     $(this).remove();
                 });
             }
+        });
+    });
+
+});
