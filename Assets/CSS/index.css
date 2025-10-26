@@ -20,9 +20,9 @@
   /* margin-top: 10px; */
 }
 /* Nav-Section */
-nav{
-z-index: 100;
-}
+  nav{
+    z-index: 100;
+  }
   .navbar {
     padding: 0 30px;
     position: sticky !important;
@@ -735,5 +735,6 @@ color: #fff;
   height: 110px;
 }
 /* End Foods-Menu Section */
+
 
 
