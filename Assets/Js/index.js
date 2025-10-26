@@ -36,12 +36,43 @@ function topFunction() {
 
 
 
-var num = 0;
-var pre = $('.reset').html(num);
-$('.increase').click(function () {
-    $(this).prev().html(num += 1)
-});
+$(document).ready(function () {
 
-$('.decrease').click(function () {
-    $(this).next().html(num -= 1)
-});
+    // Loop through each product card
+    $('.product-detail.p2').each(function () {
+        let $product = $(this);
+        let $quantity = $product.find('.reset');
+        let $price = parseFloat($product.find('.line1').first().text().replace('$', ''));
+        let $total = $product.find('.line1').eq(1);
+
+        // Set initial total
+        let qty = parseInt($quantity.text());
+        $total.text(`$${($price * qty).toFixed(2)}`);
+
+        // Increase quantity
+        $product.find('.increase').on('click', function () {
+            qty = parseInt($quantity.text());
+            qty++;
+            $quantity.text(qty);
+            $total.text(`$${($price * qty).toFixed(2)}`);
+        });
+
+        // Decrease quantity
+        $product.find('.decrease').on('click', function () {
+            qty = parseInt($quantity.text());
+            if (qty > 1) {
+                qty--;
+                $quantity.text(qty);
+                $total.text(`$${($price * qty).toFixed(2)}`);
+            }
+        });
+
+        // Remove item with confirmation
+        $product.find('.close').on('click', function (e) {
+            e.preventDefault();
+            let confirmDelete = confirm("Are you sure you want to remove this product?");
+            if (confirmDelete) {
+                $product.fadeOut(300, function () {
+                    $(this).remove();
+                });
+            }
